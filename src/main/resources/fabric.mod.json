@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "authmod",
+	"version": "${version}",
+	"name": "AuthMod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"NESTAIDA"
+	],
+	"license": "CC0-1.0",
+	"icon": "assets/authmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"nest.authmod.AuthMod"
+		]
+	},
+	"mixins": [
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.19.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
