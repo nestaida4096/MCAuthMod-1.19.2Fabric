@@ -19,7 +19,7 @@ public class AuthChecker {
 
     private static List<String> authenticatedPlayers = new ArrayList<String>() {
     };
-    private static int tickCount = 0;
+    private static int tickCount = 100;
 
     public static void register() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {

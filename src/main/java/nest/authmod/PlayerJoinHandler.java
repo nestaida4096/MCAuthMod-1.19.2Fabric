@@ -12,12 +12,18 @@ public class PlayerJoinHandler {
 
     public static void register() {
         // イベントリスナーを修正
-        ServerPlayConnectionEvents.JOIN.register((ServerPlayNetworkHandler handler, PacketSender packetSender, MinecraftServer minecraftServer) -> {
-            String playerName = handler.player.getName().getString();
-            System.out.println("Join: " + playerName);
-            if (!AuthChecker.isAuthenticated(playerName)) {
-                handler.disconnect(Text.of("あなたは認証されていません。管理者の指示に従って認証してください。"));
-            }
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            checkAuthentication(handler, server);
         });
+    }
+
+    private static void checkAuthentication(ServerPlayNetworkHandler handler, MinecraftServer server) {
+        String playerName = handler.player.getName().getString();
+        System.out.println("Join: "+playerName);
+        if (!AuthChecker.isAuthenticated(playerName)) {
+            server.execute(() -> { // メインスレッドで処理する
+                handler.disconnect(Text.of("あなたは認証されていません。管理者の指示に従って認証してください。"));
+            });
+        }
     }
 }
