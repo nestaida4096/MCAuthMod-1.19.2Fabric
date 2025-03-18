@@ -10,7 +10,7 @@ public class AuthMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		System.out.println(MOD_ID + " has been initialized!！");
-		//AuthChecker.register(); // 認証リスト取得のイベント登録
+		AuthChecker.register(); // 認証リスト取得のイベント登録
 		PlayerJoinHandler.register();
 	}
 
